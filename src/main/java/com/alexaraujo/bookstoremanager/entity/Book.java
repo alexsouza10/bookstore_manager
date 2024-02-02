@@ -9,8 +9,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
     
     @Id
@@ -34,5 +42,10 @@ public class Book {
 
     @ManyToOne(fetch =  FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "autor_id")
-    private Author autor;
+    private Author author;
+
+
+    public void author() {
+        author.getName();
+    }
 }
